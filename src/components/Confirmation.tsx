@@ -1,13 +1,19 @@
 import { Language, translations } from "@/lib/i18n";
-import { CheckCircle, MapPin, RotateCcw } from "lucide-react";
+import { CheckCircle, MapPin, MessageCircle, RotateCcw } from "lucide-react";
 
 interface Props {
   lang: Language;
+  pickup: string;
   onReset: () => void;
 }
 
-const Confirmation = ({ lang, onReset }: Props) => {
+const WHATSAPP_NUMBER = "5547960022025";
+
+const Confirmation = ({ lang, pickup, onReset }: Props) => {
   const t = translations[lang];
+
+  const whatsappMessage = encodeURIComponent(`${t.whatsappMsg} ${pickup}`);
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
 
   return (
     <div className="space-y-6 text-center animate-in fade-in zoom-in-95">
@@ -22,6 +28,21 @@ const Confirmation = ({ lang, onReset }: Props) => {
         <p className="text-lg text-muted-foreground">{t.confirmMsg}</p>
       </div>
 
+      {/* Driver received + WhatsApp */}
+      <div className="rounded-xl bg-green-500/10 border border-green-500/30 p-5 space-y-3">
+        <p className="text-foreground font-medium">{t.driverReceived}</p>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-white font-semibold hover:bg-green-700 transition-all"
+        >
+          <MessageCircle className="h-5 w-5" />
+          {t.talkNow}
+        </a>
+      </div>
+
+      {/* Explore attractions */}
       <div className="rounded-xl bg-accent/50 border border-border p-5 space-y-3">
         <p className="text-foreground font-medium">{t.waitMsg}</p>
         <a

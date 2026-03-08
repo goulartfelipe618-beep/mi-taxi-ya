@@ -42,9 +42,9 @@ const Index = () => {
         {/* Card */}
         <div className="w-full max-w-md rounded-2xl bg-card/95 backdrop-blur-xl border border-border shadow-2xl p-6 md:p-8">
           {submitted ? (
-            <Confirmation lang={lang} onReset={() => setSubmitted(false)} />
+            <Confirmation lang={lang} pickup={pickup} onReset={() => setSubmitted(false)} />
           ) : (
-            <BookingForm lang={lang} onSubmit={() => setSubmitted(true)} />
+            <BookingForm lang={lang} onSubmit={(pickupValue) => { setPickup(pickupValue); setSubmitted(true); }} />
           )}
         </div>
       </div>
