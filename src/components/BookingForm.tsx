@@ -130,6 +130,20 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
         <MapboxRoute pickupCoords={pickupCoords} dropoffCoords={dropoffCoords} />
       )}
 
+      {/* Full Name */}
+      <div className="space-y-1">
+        <label className="text-xs font-semibold text-foreground">{t.nameLabel}</label>
+        <input
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          placeholder={t.namePlaceholder}
+          className={inputClass}
+          maxLength={100}
+          required
+        />
+      </div>
+
       {/* Pickup */}
       <div className="space-y-1">
         <label className="text-xs font-semibold text-foreground">{t.pickupLabel}</label>
