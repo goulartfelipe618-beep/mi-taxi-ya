@@ -17,6 +17,7 @@ interface GeocodingResult {
 
 const BookingForm = ({ lang, onSubmit }: Props) => {
   const t = translations[lang];
+  const [fullName, setFullName] = useState("");
   const [pickup, setPickup] = useState("");
   const [dropoff, setDropoff] = useState("");
   const [needNow, setNeedNow] = useState<boolean | null>(null);
