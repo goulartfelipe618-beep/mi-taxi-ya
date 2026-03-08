@@ -94,9 +94,32 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
     setShowDropoffSuggestions(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (canSubmit) onSubmit(pickup);
+    if (!canSubmit) return;
+
+    try {
+      await fetch("https://etransporte-n8n.jeepzg.easypanel.host/webhook-test/b78436fe-c3b5-41dd-a287-2e5733df4dbb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        mode: "no-cors",
+        body: JSON.stringify({
+          pickup,
+          dropoff,
+          needNow,
+          date: needNow ? null : date,
+          time: needNow ? null : time,
+          passengers: Number(passengers),
+          pickupCoords,
+          dropoffCoords,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+    } catch (err) {
+      console.error("Webhook error:", err);
+    }
+
+    onSubmit(pickup);
   };
 
   return (
