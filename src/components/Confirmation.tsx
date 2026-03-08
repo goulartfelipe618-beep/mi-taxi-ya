@@ -7,7 +7,7 @@ interface Props {
   onReset: () => void;
 }
 
-const WHATSAPP_NUMBER = "5547960022025";
+const WHATSAPP_NUMBER = "5547996002025";
 
 const Confirmation = ({ lang, pickup, onReset }: Props) => {
   const t = translations[lang];
