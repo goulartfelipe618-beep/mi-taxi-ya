@@ -10,6 +10,7 @@ import { Car } from "lucide-react";
 const Index = () => {
   const [lang, setLang] = useState<Language>("pt");
   const [submitted, setSubmitted] = useState(false);
+  const [pickup, setPickup] = useState("");
   const t = translations[lang];
 
   return (
