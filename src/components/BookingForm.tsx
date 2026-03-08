@@ -17,6 +17,7 @@ interface GeocodingResult {
 
 const BookingForm = ({ lang, onSubmit }: Props) => {
   const t = translations[lang];
+  const [fullName, setFullName] = useState("");
   const [pickup, setPickup] = useState("");
   const [dropoff, setDropoff] = useState("");
   const [needNow, setNeedNow] = useState<boolean | null>(null);
@@ -31,7 +32,7 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
   const [locatingUser, setLocatingUser] = useState(false);
   const dropoffRef = useRef<HTMLDivElement>(null);
 
-  const canSubmit = pickup.trim() && dropoff.trim() && needNow !== null && (needNow || (date && time));
+  const canSubmit = fullName.trim() && pickup.trim() && dropoff.trim() && needNow !== null && (needNow || (date && time));
 
   const inputClass = "w-full border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-taxi rounded";
 
@@ -104,6 +105,7 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
         headers: { "Content-Type": "application/json" },
         
         body: JSON.stringify({
+          nomeCompleto: fullName,
           origem: pickup,
           destino: dropoff,
           precisaAgora: needNow,
@@ -127,6 +129,20 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
       {(pickupCoords || dropoffCoords) && (
         <MapboxRoute pickupCoords={pickupCoords} dropoffCoords={dropoffCoords} />
       )}
+
+      {/* Full Name */}
+      <div className="space-y-1">
+        <label className="text-xs font-semibold text-foreground">{t.nameLabel}</label>
+        <input
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          placeholder={t.namePlaceholder}
+          className={inputClass}
+          maxLength={100}
+          required
+        />
+      </div>
 
       {/* Pickup */}
       <div className="space-y-1">

@@ -4,6 +4,8 @@ export const translations = {
   pt: {
     title: "Taxi 24 Horas",
     subtitle: "Balneário Camboriú",
+    nameLabel: "Nome completo",
+    namePlaceholder: "Ex: João da Silva",
     pickupLabel: "Local de embarque",
     pickupPlaceholder: "Ex: Hotel Marambaia, Av. Atlântica...",
     dropoffLabel: "Local de desembarque",
@@ -31,6 +33,8 @@ export const translations = {
   es: {
     title: "Taxi 24 Horas",
     subtitle: "Balneário Camboriú",
+    nameLabel: "Nombre completo",
+    namePlaceholder: "Ej: Juan García",
     pickupLabel: "Lugar de recogida",
     pickupPlaceholder: "Ej: Hotel Marambaia, Av. Atlântica...",
     dropoffLabel: "Lugar de destino",
@@ -58,6 +62,8 @@ export const translations = {
   en: {
     title: "Taxi 24 Hours",
     subtitle: "Balneário Camboriú",
+    nameLabel: "Full name",
+    namePlaceholder: "Ex: John Smith",
     pickupLabel: "Pickup location",
     pickupPlaceholder: "Ex: Hotel Marambaia, Av. Atlântica...",
     dropoffLabel: "Drop-off location",
