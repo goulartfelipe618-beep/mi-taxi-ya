@@ -7,7 +7,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import bcBg from "@/assets/bc-bg.jpg";
 
 const Index = () => {
-  const [lang, setLang] = useState<Language>("es");
+  const [lang, setLang] = useState<Language>("pt");
   const [submitted, setSubmitted] = useState(false);
   const [pickup, setPickup] = useState("");
   const t = translations[lang];
