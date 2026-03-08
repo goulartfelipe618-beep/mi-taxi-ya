@@ -105,6 +105,7 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
         headers: { "Content-Type": "application/json" },
         
         body: JSON.stringify({
+          nomeCompleto: fullName,
           origem: pickup,
           destino: dropoff,
           precisaAgora: needNow,
