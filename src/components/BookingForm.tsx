@@ -4,7 +4,7 @@ import { MapPin, Clock, Users, Car, Calendar } from "lucide-react";
 
 interface Props {
   lang: Language;
-  onSubmit: () => void;
+  onSubmit: (pickup: string) => void;
 }
 
 const BookingForm = ({ lang, onSubmit }: Props) => {
