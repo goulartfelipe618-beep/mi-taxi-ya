@@ -102,18 +102,15 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
       await fetch("https://n8n.e-transporte.pro/webhook-test/2010afd7-1acf-4bdf-8223-bc7e3100df56", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        mode: "no-cors",
+        
         body: JSON.stringify({
-          pickup,
-          dropoff,
-          needNow,
-          date: needNow ? null : date,
-          time: needNow ? null : time,
-          passengers: Number(passengers),
-          pickupCoords,
-          dropoffCoords,
-          phone1: "47988336609",
-          phone2: "47996002025",
+          origem: pickup,
+          destino: dropoff,
+          precisaAgora: needNow,
+          data: needNow ? null : date,
+          hora: needNow ? null : time,
+          passageiros: Number(passengers),
+          telefones: ["47988336609", "47996002025"],
           timestamp: new Date().toISOString(),
         }),
       });
