@@ -20,7 +20,7 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (canSubmit) onSubmit();
+    if (canSubmit) onSubmit(pickup);
   };
 
   return (
