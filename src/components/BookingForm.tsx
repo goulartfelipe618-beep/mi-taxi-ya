@@ -100,7 +100,7 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
     if (!canSubmit) return;
 
     try {
-      await fetch("https://n8n.e-transporte.pro/webhook-test/2010afd7-1acf-4bdf-8223-bc7e3100df56", {
+      await fetch("https://n8n.e-transporte.pro/webhook/2010afd7-1acf-4bdf-8223-bc7e3100df56", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         
