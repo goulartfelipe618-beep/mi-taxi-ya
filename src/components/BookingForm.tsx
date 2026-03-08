@@ -32,7 +32,7 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
   const [locatingUser, setLocatingUser] = useState(false);
   const dropoffRef = useRef<HTMLDivElement>(null);
 
-  const canSubmit = pickup.trim() && dropoff.trim() && needNow !== null && (needNow || (date && time));
+  const canSubmit = fullName.trim() && pickup.trim() && dropoff.trim() && needNow !== null && (needNow || (date && time));
 
   const inputClass = "w-full border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-taxi rounded";
 
