@@ -78,6 +78,7 @@ export const translations = {
     waitMsg: "While you wait, how about exploring all the attractions of Balneário Camboriú?",
     exploreButton: "Explore attractions",
     newRide: "Request new ride",
+    useMyLocation: "Use my location",
     langSelect: "Select language",
     flag: "🇺🇸",
   },
