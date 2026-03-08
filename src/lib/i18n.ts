@@ -33,6 +33,8 @@ export const translations = {
   es: {
     title: "Taxi 24 Horas",
     subtitle: "Balneário Camboriú",
+    nameLabel: "Nombre completo",
+    namePlaceholder: "Ej: Juan García",
     pickupLabel: "Lugar de recogida",
     pickupPlaceholder: "Ej: Hotel Marambaia, Av. Atlântica...",
     dropoffLabel: "Lugar de destino",
