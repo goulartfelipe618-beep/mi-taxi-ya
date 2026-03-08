@@ -16,110 +16,71 @@ const MapboxRoute = ({ pickupCoords, dropoffCoords }: Props) => {
   const dropoffMarker = useRef<mapboxgl.Marker | null>(null);
   const [loaded, setLoaded] = useState(false);
 
-  // Init map
   useEffect(() => {
     if (!mapContainer.current) return;
     mapboxgl.accessToken = MAPBOX_TOKEN;
-
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [-48.6356, -26.9908], // Balneário Camboriú
+      center: [-48.6356, -26.9908],
       zoom: 13,
     });
-
     map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
     map.current.on("load", () => setLoaded(true));
-
-    return () => {
-      map.current?.remove();
-    };
+    return () => { map.current?.remove(); };
   }, []);
 
-  // Update pickup marker
   useEffect(() => {
     if (!map.current || !loaded) return;
-    if (pickupMarker.current) pickupMarker.current.remove();
-
+    pickupMarker.current?.remove();
     if (pickupCoords) {
       pickupMarker.current = new mapboxgl.Marker({ color: "#e2a308" })
-        .setLngLat(pickupCoords)
-        .addTo(map.current);
+        .setLngLat(pickupCoords).addTo(map.current);
       map.current.flyTo({ center: pickupCoords, zoom: 14 });
     }
   }, [pickupCoords, loaded]);
 
-  // Update dropoff marker
   useEffect(() => {
     if (!map.current || !loaded) return;
-    if (dropoffMarker.current) dropoffMarker.current.remove();
-
+    dropoffMarker.current?.remove();
     if (dropoffCoords) {
       dropoffMarker.current = new mapboxgl.Marker({ color: "#ef4444" })
-        .setLngLat(dropoffCoords)
-        .addTo(map.current);
+        .setLngLat(dropoffCoords).addTo(map.current);
     }
   }, [dropoffCoords, loaded]);
 
-  // Draw route
   useEffect(() => {
     if (!map.current || !loaded || !pickupCoords || !dropoffCoords) return;
-
     const drawRoute = async () => {
       const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoords[0]},${pickupCoords[1]};${dropoffCoords[0]},${dropoffCoords[1]}?geometries=geojson&access_token=${MAPBOX_TOKEN}`;
-
       try {
         const res = await fetch(url);
         const data = await res.json();
         if (!data.routes?.length) return;
-
         const route = data.routes[0].geometry;
-
         if (map.current!.getSource("route")) {
           (map.current!.getSource("route") as mapboxgl.GeoJSONSource).setData({
-            type: "Feature",
-            properties: {},
-            geometry: route,
+            type: "Feature", properties: {}, geometry: route,
           });
         } else {
           map.current!.addLayer({
-            id: "route",
-            type: "line",
-            source: {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                properties: {},
-                geometry: route,
-              },
-            },
+            id: "route", type: "line",
+            source: { type: "geojson", data: { type: "Feature", properties: {}, geometry: route } },
             layout: { "line-join": "round", "line-cap": "round" },
-            paint: {
-              "line-color": "#e2a308",
-              "line-width": 5,
-              "line-opacity": 0.8,
-            },
+            paint: { "line-color": "#e2a308", "line-width": 4, "line-opacity": 0.8 },
           });
         }
-
-        // Fit bounds
         const coords = route.coordinates as [number, number][];
         const bounds = new mapboxgl.LngLatBounds(coords[0], coords[0]);
         coords.forEach((c: [number, number]) => bounds.extend(c));
-        map.current!.fitBounds(bounds, { padding: 60 });
-      } catch (err) {
-        console.error("Route error:", err);
-      }
+        map.current!.fitBounds(bounds, { padding: 40 });
+      } catch (err) { console.error("Route error:", err); }
     };
-
     drawRoute();
   }, [pickupCoords, dropoffCoords, loaded]);
 
   return (
-    <div
-      ref={mapContainer}
-      className="w-full h-64 rounded-xl overflow-hidden border border-border"
-    />
+    <div ref={mapContainer} className="w-full h-52 rounded border border-border overflow-hidden" />
   );
 };
 
