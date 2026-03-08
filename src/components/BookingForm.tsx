@@ -112,7 +112,8 @@ const BookingForm = ({ lang, onSubmit }: Props) => {
           passengers: Number(passengers),
           pickupCoords,
           dropoffCoords,
-          phones: ["47988336609", "47996002025"],
+          phone1: "47988336609",
+          phone2: "47996002025",
           timestamp: new Date().toISOString(),
         }),
       });
