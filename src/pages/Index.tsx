@@ -8,7 +8,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import { Car } from "lucide-react";
 
 const Index = () => {
-  const [lang, setLang] = useState<Language>("es");
+  const [lang, setLang] = useState<Language>("pt");
   const [submitted, setSubmitted] = useState(false);
   const t = translations[lang];
 
