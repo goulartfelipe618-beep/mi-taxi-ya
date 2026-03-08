@@ -51,6 +51,7 @@ export const translations = {
     waitMsg: "Mientras esperas, ¿qué tal conocer todas las atracciones de Balneário Camboriú?",
     exploreButton: "Explorar atracciones",
     newRide: "Solicitar nuevo viaje",
+    useMyLocation: "Usar mi ubicación",
     langSelect: "Seleccione el idioma",
     flag: "🇪🇸",
   },
